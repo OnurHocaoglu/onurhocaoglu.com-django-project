@@ -1,0 +1,22 @@
+<ul class="pagination pagination-primary">
+                        {% if all_post.has_previous %}
+                        <li class="page-item"><a class="page-link" href="?page={{ all_post.previous_page_number }}">Geri</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">Geri</a></li>
+                        {% endif %}
+
+                        {% for i in all_post.paginator.page_range  %}
+                        {% if all_post.number == i  %}
+                        <li class="page-item disabled"><a class="page-link" href="javascript:void(0);">{{i}} </a></li>
+                        {% else %}
+                        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}} </a></li>
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% if all_post.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ all_post.next_page_number }}">İleri</a></li>
+                        {% else %}
+                        <li class="page-item disabled"><a class="page-link" href="#">İleri</a></li>
+                        {% endif %}
+                    </ul>

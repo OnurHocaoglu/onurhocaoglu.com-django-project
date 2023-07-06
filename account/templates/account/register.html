@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% block login %}
+<!--Contact Start-->
+<section id="login" class="contact-area section-padding">
+	<div class="container mt-5">													
+		<div class="row">
+			<div class="col-lg-12">	
+                <div class="section-title text-center">
+                    <h2 class="fw-bold mt-5">Login</h2>
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    {% include 'core/_messages.html' %}
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" name="username" id="username" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email:</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="repassword" class="form-label">Re-Password:</label>
+                        <input type="password" name="repassword" id="repassword" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-5">Sing Up</button>
+                </form>
+			</div>			
+		</div><!--- END ROW -->
+	</div><!--- END CONTAINER -->	
+</section>
+<!--Contact End-->
+{% endblock login %}

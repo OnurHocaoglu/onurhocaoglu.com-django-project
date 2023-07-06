@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block index %}
+{% if contact %}
+<div class="mt-5">
+    <div class="contactsend alert alert-primary mt-5" role="alert">
+    Message Send!
+    </div>
+</div>
+{% endif %}
+{% include 'page/home.html' %}
+{% include 'page/about.html' %}
+{% include 'page/service.html' %}
+{% include 'page/portfolio.html' %}
+{% include 'page/freelancer.html' %}
+{% include 'page/contact.html' %}
+
+{% endblock index %}

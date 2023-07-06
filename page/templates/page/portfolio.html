@@ -1,0 +1,33 @@
+{% load static %}
+{% block portfolio %}
+<!--Portfolio Start-->
+
+<section class="portfolio" id="portfolio">
+    <div class="container-lg">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 ">
+          <div class="section-title text-center">
+            <h2 class="fw-bold mb-5">Lates Projects</h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for item in projects  %}
+          <div class="col-md-6 col-lg-4">
+            <div class="card img-thumbnail">
+              <img src="{{item.image.url}}" height="200" class="card-img-top" alt="...">
+              <div class="card-body text-center">
+                <h5 class="card-title text-dark"> {{item.title}} </h5>
+                <p class="card-text text-muted">{{item.content}}</p>
+                <a href="{{item.url}}" class="btn btn-outline-dark"><i class="fab fa-github"></i> Github</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <!--Portfolio End-->
+{% endblock portfolio%}
+
+

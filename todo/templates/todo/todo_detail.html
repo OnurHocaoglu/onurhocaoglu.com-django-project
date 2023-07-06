@@ -1,0 +1,44 @@
+{% extends 'core/base.html' %}
+
+{% block todo %}
+<section class="frelancer-available py-5">
+    <div class="container-lg py-4">
+      <div class="row justify-content-center">
+        <div class="col-sm-6">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="{% url 'todo:todo_home' %}">Todo List</a></li>
+              <li class="breadcrumb-item"><a href="{{ todoid.category.get_absolute_url }} ">{{ todoid.category.title }} </a></li>
+              <li class="breadcrumb-item active" aria-current="page">{{ todoid.title }} </li>
+            </ol>
+          </nav>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title text-danger text-center">( {{ todoid.title }} )</h5>
+              <h6 class="card-subtitle mb-2 text-body-secondary text-center">Category: <small>{{ todoid.category }}</small></h6>
+              <p class="card-text text-dark"> {{ todoid.content }} </p>
+              <ul class="list-unstyled text-dark">
+                <li><small>Oluşturulduğu zaman : {{ todoid.created_at }}</small></li>
+                <li><small>En Son Güncelleme : {{ todoid.updated_at }}</small></a></li>
+              </ul>
+              <ul class="list-inline">
+                {% for tag in todoid.tag.all %}
+                <li class="list-inline-item">
+                  <a href="{{tag.get_absolute_url}}" class="">
+                  <span class="badge text-bg-danger">{{ tag }} </span>
+                  </a>  
+                </li>
+                {% endfor %}
+              </ul>
+              <a href="{% url 'todo:todo_home' %}">Todo Home</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+{% include 'page/freelancer.html' %}
+{% include 'page/contact.html' %}
+{% endblock todo %}
+
+

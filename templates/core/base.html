@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% if request.path == '/musicplayer/' %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mediaelement/4.2.7/mediaelementplayer.min.css" rel="stylesheet"/>
+    <link href="{% static 'css/musicplayer-style.css' %}" rel="stylesheet"/>
+    <title>Music Player</title>
+    {% elif request.path == '/blog/' %}
+    <title>Yazılım Günlüğüm, Django,Python,Html,Css,Javascript,Linux,PostgreSQL,MongoDB</title>
+    {% elif request.path == '/todo/' %}
+    <title>TodoList</title>
+    {% else %}
+    <title>Onur Hocaoğlu - Python Developer </title>
+    {% endif %}
+</head>
+<body class="bg-light">
+
+{% include 'core/_navbar.html' %}
+ 
+  {% block login %}
+  {% endblock login %}
+  {% block musicplayer %}
+  {% endblock musicplayer %}
+  {% block blog_index %}
+  {% endblock blog_index %}
+  {% block blog_detail %}
+  {% endblock blog_detail %}
+  {% block index %}
+  {% endblock index %}
+  {% block todo %}
+  {% endblock todo %}
+
+
+
+{% include 'core/_footer.html' %}
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="{% static 'js/active.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block blog_index %}
+<link rel="stylesheet" href="{% static 'css/blog/blogindex.css' %}">
+<body>
+    <div id="main-content" class="blog-page">
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-lg-8 col-md-12 left-box">
+                    {% if category %}
+                    <h3 class="mb-3">Kategori: {{ category.title }} </h3>
+                    {% endif %}
+                    {% if all_post %}
+                    {% for post in all_post  %}
+                    <div class="card single_post">
+                        <div class="body">
+                            <div class="img-post">
+                                <img class="d-block img-fluid" src="{{post.post_img.url}}  " alt="First slide">
+                            </div>
+                            <h3><a href="blog-details.html"> {{ post.title }} </a></h3>
+                            <p> {{ post.content|safe|truncatewords_html:10 }} </p>
+                        </div>
+                        <div class="footer">
+                            <div class="actions">
+                                <a href=" {{ post.get_absolute_url }}" class="btn btn-outline-secondary">Devamını Oku...</a>
+                            </div>
+                            <ul class="stats">
+                                <li><a href="javascript:void(0);"> {{category.title}} </a></li>
+                                <li><a href="javascript:void(0);" class="fa fa-heart">28</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="alert alert-warning" role="alert">
+                       Bulunamadı!
+                      </div>
+                    {% endif %}                     
+                {% include 'blog/_pagination.html' %}
+
+                </div>
+                <div class="col-lg-4 col-md-12 right-box">
+                    <div class="card">
+                        <div class="body search">
+                            <div class="input-group mb-0">
+                                <form class="d-flex" action="{% url 'blog:search' %}">
+                                    <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                    <input type="text" class="form-control" name="q" placeholder="Search..."> 
+                                </form>                                  
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="header">
+                            <h2>Kategoriler</h2>
+                        </div>
+                        {% for category in categories  %}
+                        <div class="bodyy widget d-flex">
+                            <ul class="list-unstyled d-flex categories-clouds">
+                                <li><a class="d-flex ms-2" href="{{ category.get_absolute_url }}">{{ category.title }}</a></li>
+                            </ul>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="card">
+                        <ul class="row mx-0 list-unstyled social-three text-center mb-0 me-0">
+                            <!--twitter-->
+                            <li class="col-4 col-sm-3 col-md-4 py-3 bg-twitter col-lg-4">
+                                <a class="d-block text-white" href="https://twitter.com/onur__hocaoglu" target="_blank">
+                                    <i class="fab fa-twitter fa-2x"></i>
+                                    <small class="d-block">Follower</small>
+                                </a>
+                            </li>
+                            <!--instagram-->
+                            <li class="col-4 col-sm-3 col-md-4 py-3 bg-instagram col-lg-4">
+                                <a class="d-block text-white" href="https://www.instagram.com/0nurhocaoglu/" target="_blank">
+                                    <i class="fab fa-instagram fa-2x"></i>
+                                    <small class="d-block">Followers</small>
+                                </a>
+                            </li>
+                            <!--Github-->
+                            <li class="col-4 col-sm-3 col-md-4 py-3 bg-github col-lg-4">
+                                <a class="d-block text-white" href="https://github.com/OnurHocaoglu/" target="_blank">
+                                    <i class="fab fa-github fa-2x"></i>
+                                    <small class="d-block">Followers</small>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+{% endblock blog_index %}
